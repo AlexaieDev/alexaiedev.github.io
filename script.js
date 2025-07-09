@@ -49,6 +49,16 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
+// ===== Efecto parallax en hero =====
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelector('.hero::before');
+    if (parallax) {
+        const speed = 0.5;
+        parallax.style.transform = `translateY(${scrolled * speed}px)`;
+    }
+});
+
 // ===== Animación de números en estadísticas =====
 const animateNumbers = () => {
     const numbers = document.querySelectorAll('.stat-number');
