@@ -555,7 +555,7 @@ section {
 
 .timeline-item {
     position: relative;
-    padding: 2rem 0;
+    padding: 4rem 0 2rem;
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
 }
@@ -574,14 +574,14 @@ section {
     transform: translateX(-50%);
     background: var(--gradient-primary);
     color: #0f1419;
-    padding: 0.75rem 1.5rem;
+    padding: 0.65rem 1.5rem;
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
     white-space: nowrap;
-    top: 2.5rem;
+    top: 0;
     box-shadow: var(--glow);
-    z-index: 2;
+    z-index: 10;
 }
 
 .timeline-content {
@@ -590,9 +590,11 @@ section {
     -webkit-backdrop-filter: blur(var(--blur-md));
     border: 1px solid var(--glass-border);
     padding: 2.5rem;
+    padding-top: 2rem;
     border-radius: 20px;
     box-shadow: var(--shadow-glass);
     transition: all 0.4s ease;
+    margin-top: 2.5rem;
 }
 
 .timeline-content:hover {
@@ -1037,15 +1039,23 @@ section {
         left: 30px;
     }
 
+    .timeline-item {
+        padding: 3rem 0 2rem;
+    }
+
     .timeline-item:nth-child(odd) .timeline-content,
     .timeline-item:nth-child(even) .timeline-content {
         margin-left: 80px;
         margin-right: 0;
+        margin-top: 0;
     }
 
     .timeline-date {
         left: 30px;
         transform: none;
+        top: 0.5rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
     }
 }
 
