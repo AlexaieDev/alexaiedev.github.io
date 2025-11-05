@@ -14,32 +14,35 @@ function createParticles() {
     `;
     document.body.appendChild(particlesContainer);
 
-    // Create floating particles
-    for (let i = 0; i < 15; i++) {
+    // Create floating particles with varying intensity
+    for (let i = 0; i < 20; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
 
-        // Random size between 2-8px
-        const size = Math.random() * 6 + 2;
+        // Random size between 1-6px
+        const size = Math.random() * 5 + 1;
 
-        // Random animation duration between 15-35 seconds
-        const duration = Math.random() * 20 + 15;
+        // Random animation duration between 10-25 seconds
+        const duration = Math.random() * 15 + 10;
 
         // Random delay
-        const delay = Math.random() * 20;
+        const delay = Math.random() * 10;
 
         // Random starting position
         const startX = Math.random() * 100;
+
+        // Random intensity
+        const intensity = Math.random() * 0.6 + 0.2;
 
         particle.style.cssText = `
             position: absolute;
             width: ${size}px;
             height: ${size}px;
-            background: radial-gradient(circle, rgba(16, 235, 138, 0.8) 0%, rgba(0, 255, 157, 0.4) 50%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 255, 94, ${intensity}) 0%, rgba(16, 235, 138, ${intensity * 0.5}) 50%, transparent 70%);
             border-radius: 50%;
             left: ${startX}%;
             bottom: -10px;
-            box-shadow: 0 0 ${size * 2}px rgba(16, 235, 138, 0.5);
+            box-shadow: 0 0 ${size * 3}px rgba(0, 255, 94, ${intensity}), 0 0 ${size * 6}px rgba(16, 235, 138, ${intensity * 0.3});
             animation: floatUp ${duration}s ${delay}s infinite ease-in-out;
         `;
 
