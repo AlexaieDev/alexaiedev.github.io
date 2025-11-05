@@ -1,0 +1,28 @@
+# robots.txt para alexaiedev.github.io
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://alexaiedev.github.io/sitemap.xml
+
+# Disallow archivos específicos
+Disallow: /sw.js
+Disallow: /*.pdf$
+
+# Crawl-delay para bots más agresivos
+User-agent: *
+Crawl-delay: 1
+
+# Permitir todos los principales bots de búsqueda
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /

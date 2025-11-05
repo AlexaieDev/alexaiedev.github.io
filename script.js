@@ -328,12 +328,57 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Para oportunidades laborales: alexhen.work@gmail.com');
 });
 
-// ===== Service Worker para PWA (opcional) =====
+// ===== Service Worker para PWA =====
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then(
-            registration => console.log('ServiceWorker registrado'),
-            err => console.log('ServiceWorker falló:', err)
-        ).catch(err => console.log(err));
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('[APP] ServiceWorker registrado exitosamente:', registration.scope);
+
+                // Verificar actualizaciones cada hora
+                setInterval(() => {
+                    registration.update();
+                }, 3600000);
+
+                // Manejar actualizaciones del Service Worker
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
+
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            // Hay una nueva versión disponible
+                            if (confirm('¡Hay una nueva versión del sitio disponible! ¿Quieres actualizarlo?')) {
+                                newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                window.location.reload();
+                            }
+                        }
+                    });
+                });
+            })
+            .catch(err => {
+                console.error('[APP] Error al registrar ServiceWorker:', err);
+            });
+
+        // Recargar la página cuando el Service Worker tome control
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                refreshing = true;
+                window.location.reload();
+            }
+        });
     });
 }
+
+// Detectar si la app está instalada como PWA
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevenir el prompt automático
+    e.preventDefault();
+
+    // Guardar el evento para mostrarlo más tarde
+    window.deferredPrompt = e;
+
+    console.log('[APP] PWA instalación disponible');
+
+    // Aquí podrías mostrar un botón de "Instalar App" personalizado
+});

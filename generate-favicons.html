@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Favicons</title>
+</head>
+<body>
+    <h1>Favicon Generator</h1>
+    <p>Los siguientes archivos PNG se pueden descargar haciendo clic derecho > Guardar imagen como...</p>
+
+    <h2>16x16</h2>
+    <canvas id="canvas16" width="16" height="16"></canvas>
+    <br><a id="download16" download="favicon-16x16.png">Descargar 16x16</a>
+
+    <h2>32x32</h2>
+    <canvas id="canvas32" width="32" height="32"></canvas>
+    <br><a id="download32" download="favicon-32x32.png">Descargar 32x32</a>
+
+    <h2>180x180 (Apple Touch Icon)</h2>
+    <canvas id="canvas180" width="180" height="180"></canvas>
+    <br><a id="download180" download="apple-touch-icon.png">Descargar 180x180</a>
+
+    <h2>192x192</h2>
+    <canvas id="canvas192" width="192" height="192"></canvas>
+    <br><a id="download192" download="favicon-192x192.png">Descargar 192x192</a>
+
+    <h2>512x512</h2>
+    <canvas id="canvas512" width="512" height="512"></canvas>
+    <br><a id="download512" download="favicon-512x512.png">Descargar 512x512</a>
+
+    <script>
+        const svgString = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2af598;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#009efd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2af598;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="url(#grad1)"/>
+  <circle cx="50" cy="50" r="44" fill="#f0f9ff" opacity="0.95"/>
+  <text x="50" y="68" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700"
+        text-anchor="middle" fill="url(#grad1)">AH</text>
+</svg>`;
+
+        function generateFavicon(size, canvasId, downloadId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+
+            const blob = new Blob([svgString], {type: 'image/svg+xml'});
+            const url = URL.createObjectURL(blob);
+
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, size, size);
+                canvas.toBlob(function(blob) {
+                    const pngUrl = URL.createObjectURL(blob);
+                    document.getElementById(downloadId).href = pngUrl;
+                });
+                URL.revokeObjectURL(url);
+            };
+
+            img.src = url;
+        }
+
+        generateFavicon(16, 'canvas16', 'download16');
+        generateFavicon(32, 'canvas32', 'download32');
+        generateFavicon(180, 'canvas180', 'download180');
+        generateFavicon(192, 'canvas192', 'download192');
+        generateFavicon(512, 'canvas512', 'download512');
+    </script>
+</body>
+</html>

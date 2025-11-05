@@ -1,0 +1,35 @@
+{
+  "name": "Alex Henríquez - IA Agent Developer | Data Engineer",
+  "short_name": "Alex H. Portfolio",
+  "description": "Portfolio profesional de Alex Henríquez, especialista en desarrollo de agentes de IA, ingeniería de datos y análisis",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0f9ff",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["portfolio", "professional", "technology"],
+  "lang": "es-CL",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}
