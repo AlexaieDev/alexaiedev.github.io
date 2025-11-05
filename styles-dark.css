@@ -1129,13 +1129,13 @@ section {
 }
 
 .contact-methods {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     justify-content: center;
-    align-items: stretch;
-    flex-wrap: wrap;
+    justify-items: center;
     gap: 2rem;
     margin-bottom: 3rem;
-    max-width: 800px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -1158,8 +1158,8 @@ section {
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-    min-width: 280px;
-    flex: 0 1 auto;
+    width: 100%;
+    max-width: 350px;
 }
 
 .contact-card::before {
