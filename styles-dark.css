@@ -10,6 +10,9 @@
     --glass-bg-hover: rgba(255, 255, 255, 0.06);
     --glass-border: rgba(255, 255, 255, 0.08);
     --glass-border-hover: rgba(0, 245, 160, 0.4);
+    --glass-border-enhanced: rgba(255, 255, 255, 0.2);
+    --glass-radial-bg: radial-gradient(35% 128px at 50% 0%, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+    --glass-highlight: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), rgba(0, 245, 160, 0.1), transparent);
 
     /* Ocean Breeze Gradients - Mejorados */
     --gradient-primary: linear-gradient(135deg, #00f5a0 0%, #00d4ff 100%);
@@ -34,6 +37,9 @@
     --glow-strong: 0 0 50px rgba(42, 245, 152, 0.3);
     --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     --shadow-hover: 0 12px 48px 0 rgba(0, 0, 0, 0.5);
+
+    /* Border Radius */
+    --radius-3xl: 24px;
 }
 
 /* ===== Reset ===== */
@@ -122,17 +128,29 @@ body::before {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(15, 20, 25, 0.8);
+    background: var(--glass-radial-bg), rgba(15, 20, 25, 0.8);
     backdrop-filter: blur(var(--blur-lg));
     -webkit-backdrop-filter: blur(var(--blur-lg));
     z-index: 1000;
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border-enhanced);
     transition: all 0.3s ease;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2), inset 0 -1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--glass-highlight);
+    opacity: 0.3;
 }
 
 .navbar.scrolled {
-    background: rgba(15, 20, 25, 0.95);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    background: var(--glass-radial-bg), rgba(15, 20, 25, 0.95);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
 .navbar .container {
@@ -254,14 +272,26 @@ body::before {
     text-align: center;
     max-width: 900px;
     padding: 4rem 3rem;
-    background: var(--glass-bg);
+    background: var(--glass-radial-bg), var(--glass-bg);
     backdrop-filter: blur(var(--blur-lg));
     -webkit-backdrop-filter: blur(var(--blur-lg));
-    border: 1px solid var(--glass-border);
-    border-radius: 30px;
-    box-shadow: var(--shadow-glass);
+    border: 1px solid var(--glass-border-enhanced);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
     position: relative;
     z-index: 1;
+}
+
+.hero-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--glass-highlight);
+    border-radius: var(--radius-3xl) var(--radius-3xl) 0 0;
+    opacity: 0.6;
 }
 
 .hero-title {
@@ -359,17 +389,39 @@ body::before {
 
 .stat {
     text-align: center;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem 1.5rem;
+    background: var(--glass-radial-bg), var(--glass-bg);
+    backdrop-filter: blur(var(--blur-sm));
+    -webkit-backdrop-filter: blur(var(--blur-sm));
+    border-radius: var(--radius-3xl);
+    border: 1px solid var(--glass-border-enhanced);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+.stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--glass-highlight);
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+}
+
+.stat:hover::before {
+    opacity: 0.8;
 }
 
 .stat:hover {
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--glass-radial-bg), var(--glass-bg-hover);
     border-color: var(--accent-cyan);
     transform: translateY(-3px);
+    box-shadow: var(--shadow-hover), var(--glow);
 }
 
 .stat-number {
@@ -504,17 +556,36 @@ section {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.5rem;
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--blur-sm));
-    -webkit-backdrop-filter: blur(var(--blur-sm));
-    border: 1px solid var(--glass-border);
-    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    background: var(--glass-radial-bg), var(--glass-bg);
+    backdrop-filter: blur(var(--blur-md));
+    -webkit-backdrop-filter: blur(var(--blur-md));
+    border: 1px solid var(--glass-border-enhanced);
+    border-radius: var(--radius-3xl);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+.info-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--glass-highlight);
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.info-item:hover::before {
+    opacity: 0.7;
 }
 
 .info-item:hover {
-    background: var(--glass-bg-hover);
+    background: var(--glass-radial-bg), var(--glass-bg-hover);
     border-color: var(--accent-cyan);
     transform: translateY(-3px);
     box-shadow: var(--glow);
@@ -585,20 +656,38 @@ section {
 }
 
 .timeline-content {
-    background: var(--glass-bg);
+    background: var(--glass-radial-bg), var(--glass-bg);
     backdrop-filter: blur(var(--blur-md));
     -webkit-backdrop-filter: blur(var(--blur-md));
-    border: 1px solid var(--glass-border);
+    border: 1px solid var(--glass-border-enhanced);
     padding: 2.5rem;
     padding-top: 2rem;
-    border-radius: 20px;
-    box-shadow: var(--shadow-glass);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
     transition: all 0.4s ease;
     margin-top: 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--glass-highlight);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.timeline-content:hover::before {
+    opacity: 1;
 }
 
 .timeline-content:hover {
-    background: var(--glass-bg-hover);
+    background: var(--glass-radial-bg), var(--glass-bg-hover);
     border-color: var(--glass-border-hover);
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover), var(--glow);
@@ -653,18 +742,21 @@ section {
 }
 
 .tag {
-    background: rgba(42, 245, 152, 0.1);
+    background: var(--glass-radial-bg), rgba(42, 245, 152, 0.1);
+    backdrop-filter: blur(var(--blur-sm));
+    -webkit-backdrop-filter: blur(var(--blur-sm));
     color: var(--accent-cyan);
     padding: 0.4rem 1rem;
     border-radius: 50px;
     font-size: 0.85rem;
     font-weight: 500;
-    border: 1px solid rgba(42, 245, 152, 0.2);
+    border: 1px solid var(--glass-border-enhanced);
     transition: all 0.3s ease;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .tag:hover {
-    background: rgba(42, 245, 152, 0.2);
+    background: var(--glass-radial-bg), rgba(42, 245, 152, 0.2);
     border-color: var(--accent-cyan);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(42, 245, 152, 0.2);
@@ -682,15 +774,16 @@ section {
 }
 
 .project-card {
-    background: var(--glass-bg);
+    background: var(--glass-radial-bg), var(--glass-bg);
     backdrop-filter: blur(var(--blur-md));
     -webkit-backdrop-filter: blur(var(--blur-md));
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
+    border: 1px solid var(--glass-border-enhanced);
+    border-radius: var(--radius-3xl);
     padding: 2.5rem;
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
 }
 
 .project-card::before {
@@ -699,18 +792,18 @@ section {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: var(--gradient-primary);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
+    height: 2px;
+    background: var(--glass-highlight);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
 }
 
 .project-card:hover::before {
-    transform: scaleX(1);
+    opacity: 1;
 }
 
 .project-card:hover {
-    background: var(--glass-bg-hover);
+    background: var(--glass-radial-bg), var(--glass-bg-hover);
     border-color: var(--glass-border-hover);
     transform: translateY(-8px);
     box-shadow: var(--shadow-hover), var(--glow);
@@ -789,17 +882,36 @@ section {
 }
 
 .skill-category {
-    background: var(--glass-bg);
+    background: var(--glass-radial-bg), var(--glass-bg);
     backdrop-filter: blur(var(--blur-md));
     -webkit-backdrop-filter: blur(var(--blur-md));
-    border: 1px solid var(--glass-border);
+    border: 1px solid var(--glass-border-enhanced);
     padding: 2.5rem;
-    border-radius: 20px;
+    border-radius: var(--radius-3xl);
     transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.skill-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--glass-highlight);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.skill-category:hover::before {
+    opacity: 1;
 }
 
 .skill-category:hover {
-    background: var(--glass-bg-hover);
+    background: var(--glass-radial-bg), var(--glass-bg-hover);
     border-color: var(--glass-border-hover);
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover), var(--glow);
@@ -821,19 +933,22 @@ section {
 }
 
 .skill-tag {
-    background: rgba(42, 245, 152, 0.08);
+    background: var(--glass-radial-bg), rgba(42, 245, 152, 0.08);
+    backdrop-filter: blur(var(--blur-sm));
+    -webkit-backdrop-filter: blur(var(--blur-sm));
     color: var(--accent-cyan);
     padding: 0.65rem 1.25rem;
     border-radius: 50px;
     font-size: 0.9rem;
     font-weight: 500;
-    border: 1px solid rgba(42, 245, 152, 0.15);
+    border: 1px solid var(--glass-border-enhanced);
     transition: all 0.3s ease;
     cursor: default;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .skill-tag:hover {
-    background: rgba(42, 245, 152, 0.15);
+    background: var(--glass-radial-bg), rgba(42, 245, 152, 0.15);
     border-color: var(--accent-cyan);
     transform: scale(1.05);
     box-shadow: 0 4px 15px rgba(42, 245, 152, 0.2);
@@ -852,18 +967,37 @@ section {
 }
 
 .cert-card {
-    background: var(--glass-bg);
+    background: var(--glass-radial-bg), var(--glass-bg);
     backdrop-filter: blur(var(--blur-md));
     -webkit-backdrop-filter: blur(var(--blur-md));
-    border: 1px solid var(--glass-border);
+    border: 1px solid var(--glass-border-enhanced);
     padding: 2.5rem;
-    border-radius: 20px;
+    border-radius: var(--radius-3xl);
     text-align: center;
     transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--glass-highlight);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.cert-card:hover::before {
+    opacity: 1;
 }
 
 .cert-card:hover {
-    background: var(--glass-bg-hover);
+    background: var(--glass-radial-bg), var(--glass-bg-hover);
     border-color: var(--glass-border-hover);
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover), var(--glow);
@@ -948,12 +1082,12 @@ section {
 }
 
 .contact-card {
-    background: var(--glass-bg);
+    background: var(--glass-radial-bg), var(--glass-bg);
     backdrop-filter: blur(var(--blur-md));
     -webkit-backdrop-filter: blur(var(--blur-md));
-    border: 1px solid var(--glass-border);
+    border: 1px solid var(--glass-border-enhanced);
     padding: 2.5rem;
-    border-radius: 20px;
+    border-radius: var(--radius-3xl);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -961,10 +1095,29 @@ section {
     text-decoration: none;
     color: var(--text-primary);
     transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--glass-highlight);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.contact-card:hover::before {
+    opacity: 1;
 }
 
 .contact-card:hover {
-    background: var(--glass-bg-hover);
+    background: var(--glass-radial-bg), var(--glass-bg-hover);
     border-color: var(--glass-border-hover);
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover), var(--glow);
@@ -985,13 +1138,27 @@ section {
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--blur-sm));
-    -webkit-backdrop-filter: blur(var(--blur-sm));
-    border: 1px solid var(--glass-border);
+    background: var(--glass-radial-bg), var(--glass-bg);
+    backdrop-filter: blur(var(--blur-md));
+    -webkit-backdrop-filter: blur(var(--blur-md));
+    border: 1px solid var(--glass-border-enhanced);
     padding: 1.25rem 2.5rem;
     border-radius: 50px;
     color: var(--text-secondary);
+    box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+    position: relative;
+}
+
+.availability::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: var(--glass-highlight);
+    opacity: 0.4;
 }
 
 .status-indicator {
