@@ -276,29 +276,29 @@ body::before {
 
 .roles-animation {
     position: relative;
-    height: 3.5rem;
+    height: 4rem;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2rem;
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    display: block;
+    margin: 0 auto 2rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
     width: 100%;
+    max-width: 600px;
 }
 
 .role {
     position: absolute;
-    left: 50%;
+    left: 0;
+    right: 0;
     top: 50%;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    transform: translateY(-50%);
+    text-align: center;
+    color: var(--accent-cyan);
     font-weight: 700;
     font-style: italic;
     white-space: nowrap;
     opacity: 0;
     animation: roleSlide 9s infinite;
+    text-shadow: 0 0 40px rgba(0, 245, 160, 0.4);
 }
 
 .role:nth-child(1) { animation-delay: 0s; }
@@ -308,15 +308,15 @@ body::before {
 @keyframes roleSlide {
     0%, 33.33% {
         opacity: 0;
-        transform: translate(-50%, calc(-50% + 30px));
+        transform: translateY(calc(-50% + 20px));
     }
     8.33%, 25% {
         opacity: 1;
-        transform: translate(-50%, -50%);
+        transform: translateY(-50%);
     }
     33.33%, 100% {
         opacity: 0;
-        transform: translate(-50%, calc(-50% - 30px));
+        transform: translateY(calc(-50% - 20px));
     }
 }
 
