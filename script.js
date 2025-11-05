@@ -1,10 +1,124 @@
+// ===== Animated Background Particles =====
+function createParticles() {
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'particles-container';
+    particlesContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        overflow: hidden;
+    `;
+    document.body.appendChild(particlesContainer);
+
+    // Create floating particles
+    for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+
+        // Random size between 2-8px
+        const size = Math.random() * 6 + 2;
+
+        // Random animation duration between 15-35 seconds
+        const duration = Math.random() * 20 + 15;
+
+        // Random delay
+        const delay = Math.random() * 20;
+
+        // Random starting position
+        const startX = Math.random() * 100;
+
+        particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: radial-gradient(circle, rgba(16, 235, 138, 0.8) 0%, rgba(0, 255, 157, 0.4) 50%, transparent 70%);
+            border-radius: 50%;
+            left: ${startX}%;
+            bottom: -10px;
+            box-shadow: 0 0 ${size * 2}px rgba(16, 235, 138, 0.5);
+            animation: floatUp ${duration}s ${delay}s infinite ease-in-out;
+        `;
+
+        particlesContainer.appendChild(particle);
+    }
+
+    // Create larger floating orbs
+    for (let i = 0; i < 5; i++) {
+        const orb = document.createElement('div');
+        orb.className = 'floating-orb';
+
+        const size = Math.random() * 100 + 50;
+        const duration = Math.random() * 30 + 20;
+        const delay = Math.random() * 10;
+
+        orb.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: radial-gradient(circle, rgba(16, 235, 138, 0.15) 0%, transparent 60%);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: floatAround ${duration}s ${delay}s infinite ease-in-out;
+        `;
+
+        particlesContainer.appendChild(orb);
+    }
+}
+
+// CSS for particle animations
+const particleStyles = document.createElement('style');
+particleStyles.textContent = `
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) translateX(0) scale(1);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        50% {
+            transform: translateY(-50vh) translateX(30px) scale(1.2);
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100vh) translateX(-30px) scale(0.8);
+            opacity: 0;
+        }
+    }
+
+    @keyframes floatAround {
+        0%, 100% {
+            transform: translate(0, 0) scale(1) rotate(0deg);
+        }
+        25% {
+            transform: translate(30vw, -20vh) scale(1.2) rotate(90deg);
+        }
+        50% {
+            transform: translate(-20vw, 30vh) scale(0.8) rotate(180deg);
+        }
+        75% {
+            transform: translate(40vw, 10vh) scale(1.1) rotate(270deg);
+        }
+    }
+`;
+document.head.appendChild(particleStyles);
+
+// Initialize particles when DOM is loaded
+document.addEventListener('DOMContentLoaded', createParticles);
+
 // ===== Navegación móvil =====
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
 navToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
-    
+
     // Animar el botón hamburguesa
     navToggle.classList.toggle('active');
 });
