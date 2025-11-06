@@ -229,9 +229,9 @@ body::after {
 
 /* Container */
 .container {
-    max-width: 1460px;
+    max-width: 1800px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 3rem;
     position: relative;
     z-index: 1;
 }
@@ -495,9 +495,12 @@ body::after {
 
 .hero-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .stat {
@@ -722,7 +725,7 @@ section {
 /* Timeline */
 .timeline {
     position: relative;
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -882,7 +885,7 @@ section {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
@@ -990,7 +993,7 @@ section {
 /* Skills Grid */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
 }
 
@@ -1074,7 +1077,7 @@ section {
 
 .certifications-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -1194,7 +1197,7 @@ section {
     justify-items: center;
     gap: 2rem;
     margin-bottom: 3rem;
-    max-width: 1400px;
+    max-width: 1700px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -1322,6 +1325,20 @@ section {
 }
 
 /* Responsive */
+@media (max-width: 1400px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .certifications-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 1024px) {
     .timeline::before {
         left: 30px;
@@ -1348,6 +1365,21 @@ section {
 }
 
 @media (max-width: 768px) {
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .certifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
     .nav-menu {
         position: fixed;
         left: -100%;
