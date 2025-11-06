@@ -229,7 +229,7 @@ body::after {
 
 /* Container */
 .container {
-    max-width: 1200px;
+    max-width: 1460px;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
@@ -722,7 +722,7 @@ section {
 /* Timeline */
 .timeline {
     position: relative;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -1194,7 +1194,7 @@ section {
     justify-items: center;
     gap: 2rem;
     margin-bottom: 3rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
 }
