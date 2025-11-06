@@ -38,11 +38,11 @@ function createParticles() {
             position: absolute;
             width: ${size}px;
             height: ${size}px;
-            background: radial-gradient(circle, rgba(0, 255, 94, ${intensity}) 0%, rgba(16, 235, 138, ${intensity * 0.5}) 50%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 255, 119, ${intensity}) 0%, rgba(0, 204, 95, ${intensity * 0.5}) 50%, transparent 70%);
             border-radius: 50%;
             left: ${startX}%;
             bottom: -10px;
-            box-shadow: 0 0 ${size * 3}px rgba(0, 255, 94, ${intensity}), 0 0 ${size * 6}px rgba(16, 235, 138, ${intensity * 0.3});
+            box-shadow: 0 0 ${size * 3}px rgba(0, 255, 119, ${intensity}), 0 0 ${size * 6}px rgba(0, 217, 101, ${intensity * 0.3});
             animation: floatUp ${duration}s ${delay}s infinite ease-in-out;
         `;
 
@@ -62,7 +62,7 @@ function createParticles() {
             position: absolute;
             width: ${size}px;
             height: ${size}px;
-            background: radial-gradient(circle, rgba(16, 235, 138, 0.15) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(0, 255, 119, 0.15) 0%, transparent 60%);
             border-radius: 50%;
             filter: blur(2px);
             animation: floatAround ${duration}s ${delay}s infinite ease-in-out;

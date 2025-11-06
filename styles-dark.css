@@ -1,43 +1,57 @@
-/* ===== Modern Dark Glassmorphism Theme - Strands Inspired ===== */
+/* ===== Modern Dark Theme - New Color Palette ===== */
 :root {
-    /* Dark Theme Colors - Darker like Strands */
-    --bg-primary: #0a0e14;
-    --bg-secondary: #0f1419;
-    --bg-tertiary: #14191f;
+    /* Primary Colors */
+    --logo-green: #00cc5f;
+    --green-bright: #00FF77;
+    --green-hover: #00D965;
+    --green-active: #00B353;
 
-    /* Glassmorphism - More subtle like Strands */
-    --glass-bg: rgba(255, 255, 255, 0.02);
-    --glass-bg-hover: rgba(255, 255, 255, 0.04);
-    --glass-border: rgba(255, 255, 255, 0.06);
-    --glass-border-hover: rgba(16, 235, 138, 0.3);
-    --glass-border-enhanced: rgba(255, 255, 255, 0.12);
-    --glass-radial-bg: radial-gradient(40% 140px at 50% 0%, rgba(16, 235, 138, 0.08), rgba(16, 235, 138, 0.02));
-    --glass-highlight: linear-gradient(90deg, transparent, rgba(16, 235, 138, 0.15), rgba(16, 235, 138, 0.08), transparent);
+    /* Background Colors */
+    --dark-bg: #0E0E0E;
+    --light-bg: white;
+    --bg-primary: #0E0E0E;
+    --bg-secondary: #0E0E0E;
+    --bg-tertiary: #0E0E0E;
 
-    /* Green Gradients - Strands Style */
-    --gradient-primary: linear-gradient(135deg, #10eb8a 0%, #05d66e 100%);
-    --gradient-secondary: linear-gradient(135deg, #05d66e 0%, #10eb8a 100%);
-    --gradient-glow: linear-gradient(135deg, rgba(16, 235, 138, 0.25) 0%, rgba(5, 214, 110, 0.15) 100%);
-    --gradient-green-vibrant: linear-gradient(135deg, #00ff9d 0%, #10eb8a 50%, #05d66e 100%);
+    /* Text Colors */
+    --dark-text: #0E0E0E;
+    --light-text: white;
+    --text-primary: white;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --text-tertiary: rgba(255, 255, 255, 0.6);
 
-    /* Text Colors - High Contrast */
-    --text-primary: #ffffff;
-    --text-secondary: #b4bcc7;
-    --text-tertiary: #7a8694;
+    /* Borders */
+    --dark-border: #0E0E0E;
+    --light-border: #FFFFFF;
 
-    /* Accent Colors - Green Focused (NO PURPLE) */
-    --accent-green: #10eb8a;
-    --accent-green-light: #00ff9d;
-    --accent-green-dark: #05d66e;
+    /* Glassmorphism - Updated with new green */
+    --glass-bg: rgba(0, 255, 119, 0.02);
+    --glass-bg-hover: rgba(0, 255, 119, 0.04);
+    --glass-border: rgba(0, 255, 119, 0.08);
+    --glass-border-hover: rgba(0, 255, 119, 0.3);
+    --glass-border-enhanced: rgba(0, 255, 119, 0.15);
+    --glass-radial-bg: radial-gradient(40% 140px at 50% 0%, rgba(0, 255, 119, 0.08), rgba(0, 255, 119, 0.02));
+    --glass-highlight: linear-gradient(90deg, transparent, rgba(0, 255, 119, 0.15), rgba(0, 255, 119, 0.08), transparent);
+
+    /* Gradients - Updated */
+    --gradient-primary: linear-gradient(135deg, #00FF77 0%, #00cc5f 100%);
+    --gradient-secondary: linear-gradient(135deg, #00cc5f 0%, #00FF77 100%);
+    --gradient-glow: linear-gradient(135deg, rgba(0, 255, 119, 0.25) 0%, rgba(0, 204, 95, 0.15) 100%);
+    --gradient-green-vibrant: linear-gradient(135deg, #00FF77 0%, #00D965 50%, #00B353 100%);
+
+    /* Accent Colors */
+    --accent-green: #00FF77;
+    --accent-green-light: #00FF77;
+    --accent-green-dark: #00cc5f;
 
     /* Effects */
     --blur-sm: 12px;
     --blur-md: 24px;
     --blur-lg: 48px;
-    --glow: 0 0 40px rgba(16, 235, 138, 0.2);
-    --glow-strong: 0 0 60px rgba(16, 235, 138, 0.4);
-    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-    --shadow-hover: 0 16px 56px 0 rgba(16, 235, 138, 0.15);
+    --glow: 0 0 40px rgba(0, 255, 119, 0.3);
+    --glow-strong: 0 0 60px rgba(0, 255, 119, 0.5);
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
+    --shadow-hover: 0 16px 56px 0 rgba(0, 255, 119, 0.2);
 
     /* Border Radius */
     --radius-3xl: 24px;
@@ -91,7 +105,7 @@ body {
     75% { opacity: 0.3; transform: translate(45vw, -15vh) scale(0.3); }
 }
 
-/* Animated Background - Smooth Black to Fluor Green Transition */
+/* Animated Background - Smooth Black to New Green Transition */
 body::before {
     content: '';
     position: fixed;
@@ -101,10 +115,10 @@ body::before {
     height: 100%;
     background: radial-gradient(
         circle at 50% 50%,
-        rgba(0, 255, 94, 0.8) 0%,
-        rgba(16, 235, 138, 0.4) 10%,
-        rgba(16, 235, 138, 0.15) 25%,
-        rgba(0, 0, 0, 1) 50%
+        rgba(0, 255, 119, 0.8) 0%,
+        rgba(0, 204, 95, 0.4) 10%,
+        rgba(0, 217, 101, 0.15) 25%,
+        rgba(14, 14, 14, 1) 50%
     );
     pointer-events: none;
     z-index: -1;
@@ -122,10 +136,10 @@ body::after {
     height: 100%;
     background: radial-gradient(
         ellipse at 45% 45%,
-        rgba(0, 255, 157, 0.7) 0%,
-        rgba(16, 235, 138, 0.35) 15%,
-        rgba(5, 214, 110, 0.1) 30%,
-        rgba(0, 0, 0, 1) 55%
+        rgba(0, 255, 119, 0.7) 0%,
+        rgba(0, 217, 101, 0.35) 15%,
+        rgba(0, 179, 83, 0.1) 30%,
+        rgba(14, 14, 14, 1) 55%
     );
     pointer-events: none;
     z-index: -1;
@@ -175,7 +189,7 @@ body::after {
     height: 400px;
     top: 10%;
     left: -200px;
-    background: radial-gradient(circle, rgba(16, 235, 138, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 255, 119, 0.3) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     animation: floatingOrb 20s ease-in-out infinite;
@@ -189,7 +203,7 @@ body::after {
     height: 300px;
     bottom: 10%;
     right: -150px;
-    background: radial-gradient(circle, rgba(0, 255, 157, 0.25) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 255, 119, 0.25) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     animation: floatingOrb 25s ease-in-out infinite reverse;
