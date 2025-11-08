@@ -514,13 +514,14 @@ h1.hero-title,
 }
 
 .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex !important;
+    flex-wrap: wrap;
     gap: 2rem;
-    margin-bottom: 3rem;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center !important;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto 3rem auto;
+    padding: 0;
 }
 
 .stat {
@@ -535,6 +536,12 @@ h1.hero-title,
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+    width: 180px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .stat::before {
@@ -920,6 +927,10 @@ section {
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .project-card::before {
@@ -1030,6 +1041,10 @@ section {
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .skill-category::before {
@@ -1116,6 +1131,11 @@ section {
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-glass), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .cert-card::before {
@@ -1388,7 +1408,7 @@ section {
 
 @media (max-width: 768px) {
     .hero-stats {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem; /* Solo cambiar el gap en móvil */
     }
 
     .projects-grid {
@@ -1439,10 +1459,7 @@ section {
         padding: 3rem 2rem;
     }
 
-    .hero-stats {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
+    /* Hero stats ya configurado arriba */
 
     .hero-cta {
         flex-direction: column;
@@ -1453,9 +1470,7 @@ section {
         justify-content: center;
     }
 
-    .projects-grid,
-    .skills-grid,
-    .certifications-grid,
+    /* Grids ya configurados arriba con sus valores específicos */
     .contact-methods,
     .about-info {
         grid-template-columns: 1fr;
@@ -1491,29 +1506,4 @@ section {
     }
 }
 
-/* OVERRIDE CRITICO: Forzar color blanco en el título hero */
-.hero-title,
-.hero .hero-title,
-.hero-content .hero-title,
-.hero-content h1.hero-title,
-section.hero h1.hero-title,
-.hero-content h1,
-.hero h1,
-section.hero .hero-content h1 {
-    color: #ffffff !important;
-    background: none !important;
-    background-image: none !important;
-    -webkit-text-fill-color: #ffffff !important;
-    -webkit-background-clip: unset !important;
-    background-clip: unset !important;
-    filter: none !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Asegurar que cualquier h1 dentro de hero sea blanco */
-.hero-content h1,
-.hero-content h1 *,
-.hero-content h1 span {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-}
+/* Eliminado: reglas duplicadas de hero-title ya definidas arriba */
