@@ -7,11 +7,11 @@
     --green-active: #00B353;
 
     /* Background Colors */
-    --dark-bg: #001a0d;
+    --dark-bg: #000a05;
     --light-bg: white;
-    --bg-primary: #001a0d;
-    --bg-secondary: #001a0d;
-    --bg-tertiary: #001a0d;
+    --bg-primary: #000a05;
+    --bg-secondary: #000a05;
+    --bg-tertiary: #000a05;
 
     /* Text Colors */
     --dark-text: #001a0d;
@@ -80,7 +80,7 @@ body {
 /* Animaciones de partículas desactivadas para reducir mareo */
 /* @keyframes particleFloat1, particleFloat2, particleFloat3 - Removidas */
 
-/* Animated Background - Smooth Black to New Green Transition */
+/* Matrix background - dark for contrast */
 body::before {
     content: '';
     position: fixed;
@@ -88,36 +88,13 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(
-        circle at 50% 30%,
-        rgba(0, 255, 119, 0.15) 0%,
-        rgba(0, 204, 95, 0.08) 20%,
-        rgba(0, 51, 25, 0.95) 60%
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 10, 5, 0.98) 0%,
+        rgba(0, 10, 5, 1) 100%
     );
     pointer-events: none;
-    z-index: -1;
-    opacity: 1;
-    /* Animación removida para reducir mareo */
-}
-
-/* Second layer - simplificado */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        ellipse at 70% 60%,
-        rgba(0, 255, 119, 0.1) 0%,
-        rgba(0, 179, 83, 0.05) 25%,
-        rgba(0, 51, 25, 0.9) 50%
-    );
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.7;
-    /* Animación removida para reducir mareo */
+    z-index: -2;
 }
 
 /* @keyframes greenGlow - Removida para reducir mareo */
@@ -134,34 +111,7 @@ body::after {
     }
 }
 
-/* Create floating orb elements */
-.container::before {
-    content: '';
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    top: 10%;
-    left: -200px;
-    background: radial-gradient(circle, rgba(0, 255, 119, 0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: floatingOrb 40s ease-in-out infinite;
-    z-index: -1;
-}
-
-.container::after {
-    content: '';
-    position: fixed;
-    width: 300px;
-    height: 300px;
-    bottom: 10%;
-    right: -150px;
-    background: radial-gradient(circle, rgba(0, 255, 119, 0.08) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: floatingOrb 50s ease-in-out infinite reverse;
-    z-index: -1;
-}
+/* Floating orbs disabled for Matrix effect */
 
 /* Glassmorphism Card Base */
 .glass-card {

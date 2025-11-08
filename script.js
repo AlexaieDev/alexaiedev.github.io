@@ -1,8 +1,8 @@
-// ===== Animated Background Particles =====
-function createParticles() {
-    const particlesContainer = document.createElement('div');
-    particlesContainer.className = 'particles-container';
-    particlesContainer.style.cssText = `
+// ===== Matrix Rain Effect =====
+function createMatrixEffect() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'matrix-canvas';
+    canvas.style.cssText = `
         position: fixed;
         top: 0;
         left: 0;
@@ -10,66 +10,86 @@ function createParticles() {
         height: 100%;
         pointer-events: none;
         z-index: -1;
-        overflow: hidden;
+        opacity: 0.8;
     `;
-    document.body.appendChild(particlesContainer);
+    document.body.appendChild(canvas);
 
-    // Create floating particles with varying intensity
-    for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
+    const ctx = canvas.getContext('2d');
 
-        // Random size between 1-6px
-        const size = Math.random() * 5 + 1;
+    // Set canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-        // Random animation duration between 10-25 seconds
-        const duration = Math.random() * 15 + 10;
+    // Matrix characters - mix of various symbols
+    const matrix = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*()_+-=[]{}|;:,.<>?";
+    const matrixArray = matrix.split("");
 
-        // Random delay
-        const delay = Math.random() * 10;
+    // Font size
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
 
-        // Random starting position
-        const startX = Math.random() * 100;
-
-        // Random intensity
-        const intensity = Math.random() * 0.6 + 0.2;
-
-        particle.style.cssText = `
-            position: absolute;
-            width: ${size}px;
-            height: ${size}px;
-            background: radial-gradient(circle, rgba(0, 255, 119, ${intensity}) 0%, rgba(0, 204, 95, ${intensity * 0.5}) 50%, transparent 70%);
-            border-radius: 50%;
-            left: ${startX}%;
-            bottom: -10px;
-            box-shadow: 0 0 ${size * 3}px rgba(0, 255, 119, ${intensity}), 0 0 ${size * 6}px rgba(0, 217, 101, ${intensity * 0.3});
-            animation: floatUp ${duration}s ${delay}s infinite ease-in-out;
-        `;
-
-        particlesContainer.appendChild(particle);
+    // Array for drops - one per column
+    const drops = [];
+    for (let x = 0; x < columns; x++) {
+        drops[x] = Math.floor(Math.random() * -100);
     }
 
-    // Create larger floating orbs
-    for (let i = 0; i < 5; i++) {
-        const orb = document.createElement('div');
-        orb.className = 'floating-orb';
+    // Colors for gradient effect
+    const colors = [
+        'rgba(0, 255, 119, 1)',    // Bright green
+        'rgba(0, 217, 101, 0.9)',  // Medium green
+        'rgba(0, 179, 83, 0.8)',   // Darker green
+        'rgba(0, 140, 65, 0.6)',   // Even darker
+        'rgba(0, 102, 47, 0.4)'    // Fading
+    ];
 
-        const size = Math.random() * 100 + 50;
-        const duration = Math.random() * 30 + 20;
-        const delay = Math.random() * 10;
+    // Draw function
+    function draw() {
+        // Black background with slight transparency for trail effect
+        ctx.fillStyle = 'rgba(0, 26, 13, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        orb.style.cssText = `
-            position: absolute;
-            width: ${size}px;
-            height: ${size}px;
-            background: radial-gradient(circle, rgba(0, 255, 119, 0.15) 0%, transparent 60%);
-            border-radius: 50%;
-            filter: blur(2px);
-            animation: floatAround ${duration}s ${delay}s infinite ease-in-out;
-        `;
+        ctx.font = fontSize + 'px monospace';
 
-        particlesContainer.appendChild(orb);
+        // Loop through drops
+        for (let i = 0; i < drops.length; i++) {
+            // Random character from matrix
+            const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+
+            // Color based on position for depth effect
+            const colorIndex = Math.min(Math.floor((drops[i] * fontSize) / canvas.height * colors.length), colors.length - 1);
+            const color = drops[i] < 1 ? colors[0] : (colors[colorIndex] || colors[colors.length - 1]);
+
+            ctx.fillStyle = color;
+
+            // Add glow effect for leading characters
+            if (drops[i] < 5) {
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = 'rgba(0, 255, 119, 0.8)';
+            } else {
+                ctx.shadowBlur = 0;
+            }
+
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            // Reset drop to top randomly after reaching bottom
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+
+            // Move drop down
+            drops[i]++;
+        }
     }
+
+    // Animation loop
+    setInterval(draw, 35);
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
 }
 
 // CSS for particle animations
@@ -112,8 +132,8 @@ particleStyles.textContent = `
 `;
 document.head.appendChild(particleStyles);
 
-// Initialize particles when DOM is loaded
-document.addEventListener('DOMContentLoaded', createParticles);
+// Initialize Matrix effect when DOM is loaded
+document.addEventListener('DOMContentLoaded', createMatrixEffect);
 
 // ===== Navegación móvil =====
 const navToggle = document.querySelector('.nav-toggle');
