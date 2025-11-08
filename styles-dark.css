@@ -455,7 +455,7 @@ h1.hero-title,
 
 .role-static {
     color: var(--accent-green);
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.8rem, 3.6vw, 2.4rem);
     font-weight: 600;
     font-style: italic;
     text-shadow: 0 0 30px rgba(16, 235, 138, 0.3);
@@ -465,7 +465,7 @@ h1.hero-title,
 
 .role-divider {
     color: var(--accent-green);
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.8rem, 3.6vw, 2.4rem);
     opacity: 0.5;
     animation: fadeInUp 0.8s ease 0.2s;
     animation-fill-mode: both;
@@ -1400,7 +1400,7 @@ section {
     }
 
     .role-static {
-        font-size: clamp(1.25rem, 4vw, 1.75rem);
+        font-size: clamp(1.5rem, 4.8vw, 2.1rem);
     }
 
     .projects-grid {
