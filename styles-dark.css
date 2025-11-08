@@ -7,21 +7,21 @@
     --green-active: #00B353;
 
     /* Background Colors */
-    --dark-bg: #0E0E0E;
+    --dark-bg: #001a0d;
     --light-bg: white;
-    --bg-primary: #0E0E0E;
-    --bg-secondary: #0E0E0E;
-    --bg-tertiary: #0E0E0E;
+    --bg-primary: #001a0d;
+    --bg-secondary: #001a0d;
+    --bg-tertiary: #001a0d;
 
     /* Text Colors */
-    --dark-text: #0E0E0E;
+    --dark-text: #001a0d;
     --light-text: white;
     --text-primary: white;
     --text-secondary: rgba(255, 255, 255, 0.8);
     --text-tertiary: rgba(255, 255, 255, 0.6);
 
     /* Borders */
-    --dark-border: #0E0E0E;
+    --dark-border: #001a0d;
     --light-border: #FFFFFF;
 
     /* Glassmorphism - Updated with new green */
@@ -118,7 +118,7 @@ body::before {
         rgba(0, 255, 119, 0.8) 0%,
         rgba(0, 204, 95, 0.4) 10%,
         rgba(0, 217, 101, 0.15) 25%,
-        rgba(14, 14, 14, 1) 50%
+        rgba(0, 51, 25, 1) 50%
     );
     pointer-events: none;
     z-index: -1;
@@ -139,7 +139,7 @@ body::after {
         rgba(0, 255, 119, 0.7) 0%,
         rgba(0, 217, 101, 0.35) 15%,
         rgba(0, 179, 83, 0.1) 30%,
-        rgba(14, 14, 14, 1) 55%
+        rgba(0, 51, 25, 1) 55%
     );
     pointer-events: none;
     z-index: -1;
