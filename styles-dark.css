@@ -34,8 +34,8 @@
     --glass-highlight: linear-gradient(90deg, transparent, rgba(0, 255, 119, 0.15), rgba(0, 255, 119, 0.08), transparent);
 
     /* Gradients - Updated */
-    --gradient-primary: linear-gradient(135deg, #00FF77 0%, #00cc5f 100%);
-    --gradient-secondary: linear-gradient(135deg, #00cc5f 0%, #00FF77 100%);
+    --gradient-primary: linear-gradient(135deg, #00ff77 0%, #d99700 100%);
+    --gradient-secondary: linear-gradient(135deg, #d99700 0%, #00ff77 100%);
     --gradient-glow: linear-gradient(135deg, rgba(0, 255, 119, 0.25) 0%, rgba(0, 204, 95, 0.15) 100%);
     --gradient-green-vibrant: linear-gradient(135deg, #00FF77 0%, #00D965 50%, #00B353 100%);
 
@@ -421,13 +421,19 @@ body::after {
     opacity: 0.6;
 }
 
-.hero-title {
+.hero-title,
+h1.hero-title,
+.hero .hero-title,
+.hero-content .hero-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ffffff !important;
+    background: none !important;
+    background-image: none !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #ffffff !important;
     animation: fadeInUp 0.8s ease;
 }
 
@@ -1483,4 +1489,31 @@ section {
     .contact-card {
         padding: 2rem 1.5rem;
     }
+}
+
+/* OVERRIDE CRITICO: Forzar color blanco en el título hero */
+.hero-title,
+.hero .hero-title,
+.hero-content .hero-title,
+.hero-content h1.hero-title,
+section.hero h1.hero-title,
+.hero-content h1,
+.hero h1,
+section.hero .hero-content h1 {
+    color: #ffffff !important;
+    background: none !important;
+    background-image: none !important;
+    -webkit-text-fill-color: #ffffff !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    filter: none !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Asegurar que cualquier h1 dentro de hero sea blanco */
+.hero-content h1,
+.hero-content h1 *,
+.hero-content h1 span {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
 }

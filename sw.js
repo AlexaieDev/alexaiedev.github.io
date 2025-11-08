@@ -1,14 +1,14 @@
 // Service Worker para Portfolio de Alex Henríquez
 // Version 1.0.0
 
-const CACHE_NAME = 'alexh-portfolio-v1.0.0';
-const RUNTIME_CACHE = 'alexh-runtime-v1.0.0';
+const CACHE_NAME = 'alexh-portfolio-v1.0.1';
+const RUNTIME_CACHE = 'alexh-runtime-v1.0.1';
 
 // Archivos críticos para cachear en la instalación
 const PRECACHE_URLS = [
   '/',
   '/index.html',
-  '/styles.css',
+  '/styles-dark.css',
   '/script.js',
   '/favicon.svg',
   '/manifest.json'
