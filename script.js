@@ -1,139 +1,4 @@
-// ===== Matrix Rain Effect =====
-function createMatrixEffect() {
-    const canvas = document.createElement('canvas');
-    canvas.id = 'matrix-canvas';
-    canvas.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-        opacity: 0.8;
-    `;
-    document.body.appendChild(canvas);
-
-    const ctx = canvas.getContext('2d');
-
-    // Set canvas size
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    // Matrix characters - mix of various symbols
-    const matrix = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*()_+-=[]{}|;:,.<>?";
-    const matrixArray = matrix.split("");
-
-    // Font size
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-
-    // Array for drops - one per column
-    const drops = [];
-    for (let x = 0; x < columns; x++) {
-        drops[x] = Math.floor(Math.random() * -100);
-    }
-
-    // Colors for gradient effect
-    const colors = [
-        'rgba(0, 255, 119, 1)',    // Bright green
-        'rgba(0, 217, 101, 0.9)',  // Medium green
-        'rgba(0, 179, 83, 0.8)',   // Darker green
-        'rgba(0, 140, 65, 0.6)',   // Even darker
-        'rgba(0, 102, 47, 0.4)'    // Fading
-    ];
-
-    // Draw function
-    function draw() {
-        // Black background with slight transparency for trail effect
-        ctx.fillStyle = 'rgba(0, 26, 13, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.font = fontSize + 'px monospace';
-
-        // Loop through drops
-        for (let i = 0; i < drops.length; i++) {
-            // Random character from matrix
-            const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-
-            // Color based on position for depth effect
-            const colorIndex = Math.min(Math.floor((drops[i] * fontSize) / canvas.height * colors.length), colors.length - 1);
-            const color = drops[i] < 1 ? colors[0] : (colors[colorIndex] || colors[colors.length - 1]);
-
-            ctx.fillStyle = color;
-
-            // Add glow effect for leading characters
-            if (drops[i] < 5) {
-                ctx.shadowBlur = 20;
-                ctx.shadowColor = 'rgba(0, 255, 119, 0.8)';
-            } else {
-                ctx.shadowBlur = 0;
-            }
-
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            // Reset drop to top randomly after reaching bottom
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-
-            // Move drop down
-            drops[i]++;
-        }
-    }
-
-    // Animation loop
-    setInterval(draw, 35);
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
-}
-
-// CSS for particle animations
-const particleStyles = document.createElement('style');
-particleStyles.textContent = `
-    @keyframes floatUp {
-        0% {
-            transform: translateY(0) translateX(0) scale(1);
-            opacity: 0;
-        }
-        10% {
-            opacity: 1;
-        }
-        50% {
-            transform: translateY(-50vh) translateX(30px) scale(1.2);
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-100vh) translateX(-30px) scale(0.8);
-            opacity: 0;
-        }
-    }
-
-    @keyframes floatAround {
-        0%, 100% {
-            transform: translate(0, 0) scale(1) rotate(0deg);
-        }
-        25% {
-            transform: translate(30vw, -20vh) scale(1.2) rotate(90deg);
-        }
-        50% {
-            transform: translate(-20vw, 30vh) scale(0.8) rotate(180deg);
-        }
-        75% {
-            transform: translate(40vw, 10vh) scale(1.1) rotate(270deg);
-        }
-    }
-`;
-document.head.appendChild(particleStyles);
-
-// Initialize Matrix effect when DOM is loaded
-document.addEventListener('DOMContentLoaded', createMatrixEffect);
+// Efecto Matrix eliminado - se veía muy "generado por IA"
 
 // ===== Navegación móvil =====
 const navToggle = document.querySelector('.nav-toggle');
@@ -186,15 +51,7 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// ===== Efecto parallax en hero =====
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallax = document.querySelector('.hero::before');
-    if (parallax) {
-        const speed = 0.5;
-        parallax.style.transform = `translateY(${scrolled * speed}px)`;
-    }
-});
+// Efecto parallax eliminado - innecesario
 
 // ===== Animación de números en estadísticas =====
 const animateNumbers = () => {
@@ -255,45 +112,8 @@ if (heroStats) {
     observer.observe(heroStats);
 }
 
-// ===== Animación de roles =====
-const roles = document.querySelectorAll('.role');
-let currentRole = 0;
-
-const changeRole = () => {
-    // Ocultar todos los roles
-    roles.forEach(role => {
-        role.style.opacity = '0';
-        role.style.transform = 'translateY(20px)';
-    });
-    
-    // Mostrar el rol actual
-    setTimeout(() => {
-        roles[currentRole].style.opacity = '1';
-        roles[currentRole].style.transform = 'translateY(0)';
-    }, 300);
-    
-    // Pasar al siguiente rol
-    currentRole = (currentRole + 1) % roles.length;
-};
-
-// Iniciar animación de roles
-if (roles.length > 0) {
-    changeRole();
-    setInterval(changeRole, 3000);
-}
-
-// ===== Efecto de hover en proyectos =====
-const projectCards = document.querySelectorAll('.project-card');
-
-projectCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) scale(1.02)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
+// Animación de roles eliminada - ahora son estáticos
+// Hover de proyectos eliminado - se maneja con CSS simple
 
 // ===== Lazy loading para imágenes (si se añaden en el futuro) =====
 const lazyImages = document.querySelectorAll('img[loading="lazy"]');
